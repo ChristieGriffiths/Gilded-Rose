@@ -48,6 +48,12 @@ describe GildedRose do
       GildedRose.new(pass).update_quality
       expect(pass.quality).to eq(31)
       expect(pass.sell_in).to eq(29)
+    end
+    it 'increases Backstage Passes\'s quality by 2 between day 6-10 of sell in' do 
+      pass = Item.new('Backstage passes', 10, 30)
+      GildedRose.new(pass).update_quality
+      expect(pass.quality).to eq(32)
+      expect(pass.sell_in).to eq(9)
     end 
   end
 end

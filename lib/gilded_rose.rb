@@ -7,7 +7,7 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      p "before #{item.quality}"
+      p "Item quality enters as: #{item.quality}"
       return item if item.name == 'Sulfuras'
       if item.name != "Aged Brie" && item.name != "Backstage passes"
         if item.quality > 0 
@@ -18,7 +18,6 @@ class GildedRose
       else
         if item.quality < 50
           item.quality = item.quality + 1
-          p "after 2 #{item.quality}"
           if item.name == "Backstage passes"
             if item.sell_in < 11
               if item.quality < 50
