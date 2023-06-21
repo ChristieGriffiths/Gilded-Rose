@@ -6,7 +6,7 @@ describe GildedRose do
     it "does not change the name" do
       item = Item.new("foo", 0, 0)
       GildedRose.new(item).update_quality()
-      expect(itemsname).to eq "foo"
+      expect(item.name).to eq "foo"
     end
   end
 
