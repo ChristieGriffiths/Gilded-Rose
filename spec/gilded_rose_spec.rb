@@ -13,11 +13,17 @@ describe GildedRose do
       expect(glass.sell_in).to eq(9)
       expect(glass.quality).to eq(9)
     end
-    it 'cannot decrease a standard item"s quality to a negative' do
+    it 'cannot decrease a standard item\'s quality to a negative' do
       glass = Item.new('opaque', 0, 0)
       GildedRose.new(glass).update_quality
       expect(glass.sell_in).to eq(-1)
       expect(glass.quality).to eq(0)
+    end
+    it 'cannot increase an item\'s quality above 50' do
+      glass = Item.new('Aged Brie', 10, 50)
+      GildedRose.new(glass).update_quality
+      expect(glass.sell_in).to eq(9)
+      expect(glass.quality).to eq(50)
     end
   end
 end
