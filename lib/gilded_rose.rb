@@ -67,6 +67,7 @@ class Item
     "#{@name}, #{@sell_in}, #{@quality}"
   end
 end
+
 backstage_passes = Item.new('Backstage passes', 30, 0)
 test = GildedRose.new(backstage_passes)
 p backstage_passes.to_s
