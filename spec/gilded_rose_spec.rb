@@ -25,5 +25,11 @@ describe GildedRose do
       expect(glass.sell_in).to eq(9)
       expect(glass.quality).to eq(50)
     end
+    it 'a standard item\'s quality decreases twice as fast once past the sell-in date' do
+      glass = Item.new('opaque', 0, 10)
+      GildedRose.new(glass).update_quality
+      expect(glass.sell_in).to eq(-1)
+      expect(glass.quality).to eq(8)
+    end
   end
 end
