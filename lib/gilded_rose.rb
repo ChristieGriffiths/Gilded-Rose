@@ -7,6 +7,7 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
+      return item if item.name == 'Sulfuras'
       if item.name != "Aged Brie" and item.name != "Backstage passes"
         if item.quality > 0
           if item.name != "Sulfuras"
@@ -67,3 +68,20 @@ class Item
     "#{@name}, #{@sell_in}, #{@quality}"
   end
 end
+
+class Sulfuras < Item
+  def initialize(name, quality, sell_in = nil)
+    @name = name
+    @quality = quality
+  end
+
+  def to_s()
+    "#{@name}, #{@quality}"
+  end
+end 
+
+
+weapon = Sulfuras.new('Sulfuras', 30)
+test = GildedRose.new(weapon)
+p weapon.to_s
+
