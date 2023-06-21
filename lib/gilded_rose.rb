@@ -7,7 +7,6 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      p "Item quality enters as: #{item.quality}"
       return item if item.name == 'Sulfuras'
       if item.name != "Aged Brie" && item.name != "Backstage passes"
         if item.quality > 0 
