@@ -7,9 +7,10 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
+      p "before #{item.quality}"
       return item if item.name == 'Sulfuras'
-      if item.name != "Aged Brie" and item.name != "Backstage passes"
-        if item.quality > 0
+      if item.name != "Aged Brie" && item.name != "Backstage passes"
+        if item.quality > 0 
           if item.name != "Sulfuras"
             item.quality = item.quality - 1
           end
@@ -17,6 +18,7 @@ class GildedRose
       else
         if item.quality < 50
           item.quality = item.quality + 1
+          p "after 2 #{item.quality}"
           if item.name == "Backstage passes"
             if item.sell_in < 11
               if item.quality < 50
@@ -29,6 +31,7 @@ class GildedRose
               end
             end
           end
+
         end
       end
       if item.name != "Sulfuras"
@@ -79,9 +82,4 @@ class Sulfuras < Item
     "#{@name}, #{@quality}"
   end
 end 
-
-
-weapon = Sulfuras.new('Sulfuras', 30)
-test = GildedRose.new(weapon)
-p weapon.to_s
 

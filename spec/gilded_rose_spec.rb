@@ -38,5 +38,16 @@ describe GildedRose do
       expect(cheese.sell_in).to eq(9)
       expect(cheese.quality).to eq(31)
     end
+    it 'dosen\'t alter Sulfuras in quality' do
+      weapon = Sulfuras.new('Sulfuras', 30)
+      GildedRose.new(weapon).update_quality
+      expect(weapon.quality).to eq(30)
+    end
+    it 'increases Backstage Passes\'s quality by 1 before 10 sell-in mark' do
+      pass = Item.new('Backstage passes', 30, 30)
+      GildedRose.new(pass).update_quality
+      expect(pass.quality).to eq(31)
+      expect(pass.sell_in).to eq(29)
+    end 
   end
 end
