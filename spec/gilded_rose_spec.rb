@@ -67,5 +67,11 @@ describe GildedRose do
       expect(pass.quality).to eq(33)
       expect(pass.sell_in).to eq(0)
     end 
+    it 'Backstage Passes\'s quality to 0 after concert' do 
+      pass = Item.new('Backstage passes', 0, 30)
+      GildedRose.new(pass).update_quality
+      expect(pass.quality).to eq(0)
+      expect(pass.sell_in).to eq(-1)
+    end 
   end
 end
