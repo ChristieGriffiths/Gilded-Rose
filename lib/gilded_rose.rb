@@ -41,8 +41,9 @@ class GildedRose
   
   def decrease_quality(item)
     return if item.quality <= 0
-  
+    item.quality -= 1 if item.class == ConjuredItem
     item.quality -= 1
+
   end
   
   def decrease_sell_in(item)
@@ -51,6 +52,42 @@ class GildedRose
     item.sell_in -= 1
   end
   
+end
+
+class Item
+  attr_accessor :name, :sell_in, :quality
+  
+  def initialize(name, sell_in, quality)
+    @name = name
+    @sell_in = sell_in
+    @quality = quality
+  end
+  
+  def to_s()
+    "#{@name}, #{@sell_in}, #{@quality}"
+  end
+end
+
+class Sulfuras < Item
+  def initialize(name, quality, sell_in = nil)
+    @name = name
+    @quality = quality
+  end
+  
+  def to_s()
+    "#{@name}, #{@quality}"
+  end
+end 
+
+class ConjuredItem < Item
+
+end
+
+
+  
+  
+  
+  # laptop setup
   # def update_quality()
   #   @items.each do |item|
   #     return item if item.name == 'Sulfuras'
@@ -99,31 +136,3 @@ class GildedRose
   #     end
   #   end
   # end
-end
-
-class Item
-  attr_accessor :name, :sell_in, :quality
-
-  def initialize(name, sell_in, quality)
-    @name = name
-    @sell_in = sell_in
-    @quality = quality
-  end
-
-  def to_s()
-    "#{@name}, #{@sell_in}, #{@quality}"
-  end
-end
-
-class Sulfuras < Item
-  def initialize(name, quality, sell_in = nil)
-    @name = name
-    @quality = quality
-  end
-
-  def to_s()
-    "#{@name}, #{@quality}"
-  end
-end 
-
-# laptop setup

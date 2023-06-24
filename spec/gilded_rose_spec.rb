@@ -13,6 +13,12 @@ describe GildedRose do
       expect(glass.sell_in).to eq(9)
       expect(glass.quality).to eq(9)
     end
+    it 'decreases a conjured item by 1 in sell-in and 2 in quality' do
+      glass = ConjuredItem.new('opaque', 10, 10)
+      GildedRose.new(glass).update_quality
+      expect(glass.sell_in).to eq(9)
+      expect(glass.quality).to eq(8)
+    end
     it 'cannot decrease a standard item\'s quality to a negative' do
       glass = Item.new('opaque', 0, 0)
       GildedRose.new(glass).update_quality
@@ -31,6 +37,13 @@ describe GildedRose do
       GildedRose.new(glass).update_quality
       expect(glass.sell_in).to eq(-2)
       expect(glass.quality).to eq(6)
+    end
+    it 'a conjured item\'s quality decreases twice as fast once past the sell-in date' do
+      glass = ConjuredItem.new('opaque', -1, 10)
+      GildedRose.new(glass).update_quality
+      GildedRose.new(glass).update_quality
+      expect(glass.sell_in).to eq(-3)
+      expect(glass.quality).to eq(2)
     end
     it 'increases Aged Brie overtime' do
       cheese = Item.new('Aged Brie', 10, 30)
